@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sorted</title>
+	</head>
+	<body>
+		<div id="app">
+			<button @click="sortAscending()">Сортировать по возрастанию цены</button>
+			<button @click="sortDescending()">Сортировать по убыванию цены</button>
+			<ul>
+				<li v-for="product in sortedProducts" :key="product.id">{{ product.name }} - {{ product.price }}</li>
+			</ul>
+		</div>
+		<script src="vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					products: [
+						{ id: 1, name: 'Iphone 15', price: 125000 },
+						{ id: 2, name: 'Samsung', price: 110000 },
+						{ id: 3, name: 'Xiaomi', price: 45000 },
+						{ id: 4, name: 'Motorola', price: 33000 },
+						{ id: 5, name: 'Alcatel', price: 10000 },
+						{ id: 6, name: 'Sony', price: 12999 },
+						{ id: 7, name: 'Nokia', price: 4500 },
+					],
+				},
+				computed: {
+					sortedProducts() {
+						return this.products.slice();
+					},
+				},
+				methods: {
+					sortAscending() {
+						this.products.sort((a, b) => a.price - b.price);
+					},
+					sortDescending() {
+						this.products.sort((a, b) => b.price - a.price);
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
